@@ -14,8 +14,12 @@
 Route::get('/', function () {
     return view('welcome');
 });
+Route::view('login','backend.dashboard.login')->name('login');
+Route::post('submit','LoginController@login')->name('admin.login.submit');
+Route::group(['prefix' =>'admin','middleware'=>'auth'], function () {
+    Route::view('dashboard','backend.dashboard.index')->name('dashboard');
+    Route::view('login','backend.dashboard.system_settings')->name('system.setting');
+    Route::resource('system-setting','SystemController');
 
-Route::group(['prefix' =>'admin'], function () {
-    Route::view('dashboard','backend.dashboard.index');
 });
 
