@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use App\Systemsetting;
 class LoginController extends Controller
 {
     public function login(Request $request){
@@ -29,5 +30,11 @@ class LoginController extends Controller
         }
         $request->session()->flash('error', 'User Not found');
         return redirect()->back();
+    }
+
+    public function dashboard(){
+        $system_setting = Systemsetting::find(1);
+        $_SESSION['setting'] = $system_setting;
+        return view('backend.dashboard.index', compact('system_setting'));
     }
 }

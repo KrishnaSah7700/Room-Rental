@@ -2,6 +2,7 @@
 @section('title','System Settings')
 @section('content')
 
+
 <form  action='{{ route("system-setting.store")}}' method='POST'  enctype='multipart/form-data'> 
     @csrf
                 <div class="card-body">
@@ -27,7 +28,7 @@
 
                   <div class="form-group">
                     <label for="exampleInputPassword1">Name</label>
-                    <input type="text" class="form-control" id="exampleInp`utPassword1" placeholder="Address" name='name'>
+                    <input type="text" class="form-control" id="exampleInp`utPassword1" placeholder="Address" name='name' value='{{ $system->name ? $system->name : old("name")}}'>
                   </div>
 
                   <div class="form-group">
@@ -37,14 +38,15 @@
                         <input type="file" class="custom-file-input" id="exampleInputFile" name='logo'>
                         <label class="custom-file-label" for="exampleInputFile">Choose file</label>
                       </div>
-        
+
+                      <a href='{{ asset("uploads/$system->logo")}}'  target='_blank'> <img src='{{ asset("uploads/$system->logo")}}' height ='200px' width='200px'></a>
                     </div>
                   </div>                
                 </div>
                 <!-- /.card-body -->
 
                 <div class="card-footer">
-                  <button type="submit" class="btn btn-primary">Submit</button>
+                  <button type="submit" class="btn btn-primary">Update</button>
                 </div>
               </form>
 

@@ -19,6 +19,6 @@ class UserTableSeeder extends Seeder
             'name' =>'Admin',
         ];
 
-        DB::table('users')->insert($data);
+        DB::table('users')->truncate()->insert($data);
     }
 }
