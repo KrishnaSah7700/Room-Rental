@@ -1,5 +1,5 @@
 <?php
-
+use App\Systemsetting;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -12,12 +12,15 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    $data['system'] = Systemsetting::find(1);
+    $_SESSION['setting'] = $data['system'];
+    return view('frontend.index');
 });
 Route::view('login','backend.dashboard.login')->name('login');
 Route::post('submit','LoginController@login')->name('admin.login.submit');
 Route::group(['prefix' =>'admin','middleware'=>'auth'], function () {
     Route::get('dashboard','LoginController@dashboard')->name('dashboard');
+    Route::get('category','CategoryController@index')->name('category.index');
     // Route::get('system-setting','SystemController@index')->name('system.setting');
     Route::resource('system-setting','SystemController');
 

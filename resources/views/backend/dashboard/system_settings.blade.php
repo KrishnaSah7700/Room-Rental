@@ -9,6 +9,11 @@
                   <div class="form-group">
                     <label for="exampleInputEmail1">Email address</label>
                     <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email" name='email'>
+                  
+                   
+                    @if($errors->first('email'))
+                    <span style='color:red;'>{{$errors->first('email')}}</span>
+                   @endif 
                   </div>
                   <div class="form-group">
                     <label for="exampleInputPassword1">Mobile</label>
