@@ -30,6 +30,9 @@ Route::group(['prefix' =>'admin','middleware'=>'auth'], function () {
 
     //product
     Route::get('product-create','ProductController@index')->name('product.create');
+    Route::get('product-details/{id}','ProductController@productDetails')->name('product.details');
+    Route::post('product-order/{id}','ProductController@placeOrder')->name('product.placeorder');
+
 
 });
 

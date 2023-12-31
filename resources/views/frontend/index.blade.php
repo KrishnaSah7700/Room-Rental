@@ -174,7 +174,7 @@
                                  <div class="tshirt_img"><img src="images/tshirt-img.png"></div>
                                  <div class="btn_main">
                                     <div class="buy_bt"><a href="#">Buy Now</a></div>
-                                    <div class="seemore_bt"><a href="#">See More</a></div>
+                                    <div class="seemore_bt"><a href="{{ route('product.details', $product->id)}}" target='_blank'>See More</a></div>
                                  </div>
                               </div>
                            </div>
