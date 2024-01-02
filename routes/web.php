@@ -21,6 +21,7 @@ Route::get('/', function () {
 });
 Route::view('login','backend.dashboard.login')->name('login');
 Route::post('submit','LoginController@login')->name('admin.login.submit');
+Route::get('search','CategoryController@search')->name('frontend.search');
 Route::group(['prefix' =>'admin','middleware'=>'auth'], function () {
     Route::get('dashboard','LoginController@dashboard')->name('dashboard');
     Route::get('category','CategoryController@index')->name('category.index');

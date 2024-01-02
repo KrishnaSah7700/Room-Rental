@@ -163,13 +163,13 @@
       <div class="fashion_section">
          <div id="main_slider" class="carousel slide" data-ride="carousel">
             <div class="carousel-inner">
-               @forelse($categories as $category)
+            
                <div class="carousel-item active">
                   <div class="container">
-                     <h1 class="fashion_taital"> {{   $category->category_name}}</h1>
+                     <h1 class="fashion_taital"> </h1>
                      <div class="fashion_section_2">
                         <div class="row">
-                         @forelse($category->products as $product)
+                        @forelse($products as $product)
                          <div class="col-lg-4 col-sm-4">
                               <div class="box_main">
                                  <h4 class="shirt_text">{{  $product->name}}</h4>
@@ -189,9 +189,6 @@
                      </div>
                   </div>
                </div>
-               @empty
-
-               @endforelse
               
              
             </div>

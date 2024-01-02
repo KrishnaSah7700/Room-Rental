@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 use App\Category;
+use App\Product;
+use App\Systemsetting;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -28,5 +30,21 @@ class CategoryController extends Controller
 
         return redirect()->route('category.index');
 
+    }
+
+    public function search(Request $request){
+            $searchTerm = $request->search;
+            $query = Product::query();
+            $data['system'] = Systemsetting::find(1);
+            $_SESSION['setting'] = $data['system'];
+            if($searchTerm){
+               $query->where('name','LIKE','%'.$searchTerm.'%')
+                       ->orWhere('price','LIKE','%'.$searchTerm.'%')
+                       ->orWhere('description','LIKE','%'.$searchTerm.'%');
+                       $data['products'] = $query->get();   
+                    return view('frontend.result', $data);        
+            }else{
+                return redirect()->back();
+            }
     }
 }
