@@ -17,11 +17,12 @@ class LoginController extends Controller
         ]);
 
         //find user
+       try{
         $user = User::where('email',$request->email)->first();
         if($user){
             if($user->password){
                 if(Hash::check($request->password, $user->password)){
-                    Auth::login($user);
+                    Auth::guard('admin')->login($user);
                     return redirect()->route('dashboard');
                 }
                 $request->session()->flash('error', 'Please check Password');
@@ -30,6 +31,10 @@ class LoginController extends Controller
         }
         $request->session()->flash('error', 'User Not found');
         return redirect()->back();
+       }catch(\Exception $e){
+        dd($e);
+       }
+     
     }
 
     public function dashboard(){

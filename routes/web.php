@@ -1,6 +1,7 @@
 <?php
 use App\Systemsetting;
 use App\Category;
+use Illuminate\Support\Str;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,6 +14,9 @@ use App\Category;
 */
 
 Route::get('/', function () {
+   $str = 'Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit';
+  $test =  Str::limit($str, 20, ' ...');
+
     $data['system'] = Systemsetting::find(1);
     $data['categories'] = Category::with('products')->get();
     // dd($data);
@@ -22,7 +26,7 @@ Route::get('/', function () {
 Route::view('login','backend.dashboard.login')->name('login');
 Route::post('submit','LoginController@login')->name('admin.login.submit');
 Route::get('search','CategoryController@search')->name('frontend.search');
-Route::group(['prefix' =>'admin','middleware'=>'auth'], function () {
+Route::group(['prefix' =>'admin','middleware'=>'auth:admin'], function () {
     Route::get('dashboard','LoginController@dashboard')->name('dashboard');
     Route::get('category','CategoryController@index')->name('category.index');
 
