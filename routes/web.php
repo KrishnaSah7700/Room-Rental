@@ -28,7 +28,7 @@ Route::post('submit','LoginController@login')->name('admin.login.submit');
 Route::get('search','CategoryController@search')->name('frontend.search');
 Route::group(['prefix' =>'admin','middleware'=>'auth:admin'], function () {
     Route::get('dashboard','LoginController@dashboard')->name('dashboard');
-    Route::get('category','CategoryController@index')->name('category.index');
+    Route::get('category','CategoryController@index')->name('category.index')->middleware('payment');
 
     // Route::get('system-setting','SystemController@index')->name('system.setting');
     Route::resource('system-setting','SystemController');

@@ -15,7 +15,7 @@ class LoginController extends Controller
             'email' =>'required|email',
             'password' =>'required|min:6'
         ]);
-
+$request->ip();
         //find user
        try{
         $user = User::where('email',$request->email)->first();
